@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+    private final JwtRequestFilter jwtRequestFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -36,6 +37,7 @@ public class SecurityConfig {
                                 .requestMatchers("/h2-console/**").permitAll()
                                 .anyRequest().authenticated()
                 )
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .headers(headers -> {
                     headers.cacheControl(HeadersConfigurer.CacheControlConfig::disable);
                     headers.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin);
