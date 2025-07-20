@@ -22,6 +22,7 @@ public class PurchaseOrderService {
         PurchaseOrder purchaseOrder = new PurchaseOrder();
         purchaseOrder.setProductId("R001");
         purchaseOrder.setProductName("Rice");
+        purchaseOrder.setUnit("kg");
         purchaseOrder.setQuantity(1);
         purchaseOrder.setUnitPrice(100.0);
         purchaseOrder.setUid(UUID.randomUUID().toString());
